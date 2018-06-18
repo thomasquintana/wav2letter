@@ -36,8 +36,8 @@ local function cmdtestoptions(cmd)
     cmd:option('-gpu', 1, 'gpu device')
     cmd:option('-nolsm', false, 'remove lsm layer')
     cmd:option('-addlsm', false, 'add lsm layer')
-    cmd:option('-letters', "", 'letters.lst')
-    cmd:option('-lettersrep', "", 'letter-rep.lst')
+    cmd:option('-dict', "", 'letters.lst')
+    cmd:option('-letters', "", 'letter-rep.lst')
     cmd:option('-words', "", 'words.lst')
     cmd:option('-maxword', -1, 'maximum number of words to use')
     cmd:option('-lm', "", 'lm.arpa.bin')
@@ -78,7 +78,7 @@ local function cmdtestoptions(cmd)
  
  --dictionaries
  local dict = data.newdict{
-    path = opt.letters
+    path = opt.dict
  }
  
  local dict39phn
@@ -167,7 +167,7 @@ local function cmdtestoptions(cmd)
   end
 
 local decoder = decoder(
-   opt.lettersrep,
+   opt.letters,
    opt.words,
    opt.lm,
    opt.smearing,

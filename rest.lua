@@ -51,6 +51,7 @@ local function cmdtestoptions(cmd)
     cmd:option('-forceendsil', false, 'force end sil')
     cmd:option('-logadd', false, 'use logadd instead of max')
     cmd:option('-nthread', 0, 'number of threads to use')
+    cmd:option('-port', 8080, 'The port number for the rest endpoint to listen on')
     cmd:text()
  end
  
@@ -188,7 +189,7 @@ local dopt = {
 local transformations = transforms.inputfromoptions(opt, kw, dw)
 
 -- Start the web service.
-local server = restserver:new():port(8080)
+local server = restserver:new():port(opt.port)
 
 server:add_resource("asr", {
    {

@@ -208,14 +208,14 @@ server:add_resource("asr", {
          raw_predictions = utils.uniq(predictions)
 
          if (request.raw_only == true) then
-          result = string.format('{"raw_output": %s', tostring(raw_predictions))
+          result = string.format('{"raw_output": %s}', tostring(raw_predictions))
           return restserver.response():status(200):entity(result)
          else
           local predictions, lpredictions = decoder(dopt, transitions, network.output)
           predictions = decoder.removeunk(predictions)
           predictions = decoder.tensor2string(predictions)
    
-          result = string.format('{"output": %s, "raw_output": %s',
+          result = string.format('{"output": %s, "raw_output": %s}',
                                  predictions, tostring(raw_predictions))
    
           return restserver.response():status(200):entity(result)
